@@ -1,0 +1,9 @@
+*.d
+*.o
+*.crf
+*.axf
+*.map
+*.dep
+*.html
+*.htm
+*.json

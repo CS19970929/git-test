@@ -2,8 +2,6 @@
 
 UINT8 SeriesNum = 16;
 
-// 不同串数维护的表格
-// 中颖
 const unsigned char SeriesSelect_AFE1[16][16] = {
 	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	   // 1串
 	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	   // 2串
@@ -27,11 +25,9 @@ void InitVar(void);
 void InitDevice(void);
 void InitSystemWakeUp(void);
 void App_MOS_Relay_Control(void);
-void MCU_ClockTest(void);
 
 int main(void)
 {
-	// UINT8 i;
 	InitDevice(); // 初始化外设，这两个函数的位置需要斟酌一下，现在换回去先
 	InitVar();	  // 初始化变量
 
@@ -61,6 +57,7 @@ int main(void)
 		App_FlashUpdateDet();
 		App_LogRecord();
 		App_ProID_Deal();
+
 		Feed_IWatchDog;
 #endif
 	}
@@ -193,21 +190,3 @@ void InitSystemWakeUp(void)
 	__delay_ms(100);
 }
 
-void MCU_ClockTest(void)
-{
-	GPIO_InitTypeDef GPIO_InitStructure;
-
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_DBGMCU, ENABLE);
-
-	/*!< Configure sEE_I2C pins: SDA */
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_Level_1;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_0); // 这个AF选项找芯片手册非reg版
-
-	RCC->CFGR |= RCC_CFGR_MCO_SYSCLK;
-	// RCC->CFGR |= RCC_CFGR_MCO_HSE;
-}

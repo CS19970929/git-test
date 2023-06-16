@@ -43,18 +43,7 @@ void Init_Registers(UINT8 num)
 	// DSG_OFF;
 }
 
-void DataLoad_CellVolt_Test(void)
-{
-	g_stCellInfoReport.u16VCell[23] = SH367309_Reg_Store.REG_BSTATUS1.all;
-	g_stCellInfoReport.u16VCell[24] = SH367309_Reg_Store.REG_BSTATUS2.all;
-	g_stCellInfoReport.u16VCell[25] = SH367309_Reg_Store.REG_BSTATUS3.all;
 
-	g_stCellInfoReport.u16VCell[27] = aaaaaa1;
-	g_stCellInfoReport.u16VCell[28] = aaaaaa2;
-	g_stCellInfoReport.u16VCell[29] = aaaaaa3;
-	g_stCellInfoReport.u16VCell[30] = aaaaaa4;
-	g_stCellInfoReport.u16VCell[31] = aaa11;
-}
 
 // 这里排列好就行，不需要电池位号映射表。>61000为不用
 // 经过验算，AFE1校准一次，然后本身再校准一次叠加是可以的。不需要确定某一个KB值的做法。

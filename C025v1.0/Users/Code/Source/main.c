@@ -63,7 +63,6 @@ int main(void)
 	}
 }
 
-// 这个初始化函数很容易出问题
 void InitDevice(void)
 {
 	SystemInit(); // 直接调用就可以了。
